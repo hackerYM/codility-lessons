@@ -1,6 +1,7 @@
-# Codility for Programmers
+# Codility Sample Code
 
-### Discover the ins and outs of coding by taking our hands-on coding lessons
+Record sample files on Codility lessons to practice coding skills
 
-#### lessons: https://app.codility.com/programmers/lessons
-#### challenges: https://app.codility.com/programmers/challenges/
+- [Codility](https://app.codility.com/programmers/)
+
+- [Lessons](https://app.codility.com/programmers/lessons)
