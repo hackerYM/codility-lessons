@@ -1,6 +1,4 @@
 def solution(X, Y, D):
     
-    if (Y - X) % D == 0:
-        return (Y - X) // D
-    else:
-        return (Y - X) // D + 1
+    steps = (Y - X) // D
+    return steps if (Y - X) % D == 0 else steps + 1

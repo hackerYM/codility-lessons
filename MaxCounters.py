@@ -1,21 +1,18 @@
 def solution(N, A):
     
     result = [0] * N
-    max_counter = current_max = 0 
-    
+    max_num, max_counter = 0, 0
+
     for num in A:
-        if num <= N:
-            if result[num-1] < max_counter:
-                result[num-1] = max_counter
-            result[num-1] += 1
-            
-            if result[num-1] > current_max:
-                current_max = result[num-1]
+        if num == N + 1:
+            max_counter = max_num
         else:
-            max_counter = current_max
-    
-    for idx in range(len(result)):
-        if result[idx] < max_counter:
-            result[idx] = max_counter
-            
+            result[num-1] = max(result[num-1], max_counter)
+            result[num-1] += 1
+            max_num = max(max_num, result[num-1])
+
+    for idx in range(N):
+        result[idx] = max(result[idx], max_counter)
+
     return result
+
