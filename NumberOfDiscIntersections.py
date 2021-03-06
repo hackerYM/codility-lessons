@@ -1,20 +1,30 @@
+# Brute Force O(N ** 2)
+
+# def solution(A):
+#
+#     result = 0
+#
+#     for r_idx in range(len(A)):
+#         for l_idx in range(r_idx + 1, len(A)):
+#             if r_idx + A[r_idx] >= l_idx - A[l_idx]:
+#                 result += 1
+#
+#     return -1 if result > 10_000_000 else result
+
 # http://www.lucainvernizzi.net/blog/2014/11/21/codility-beta-challenge-number-of-disc-intersections/
 
 def solution(A):
-    
-    circle_boundary = []
+
+    boundaries = []
     for idx, radius in enumerate(A):
-        circle_boundary += [(idx-radius, +1), (idx+radius, -1)]
-        
-    circle_boundary.sort(key=lambda x: (x[0], -x[1]))
-    # print(circle_boundary)
-    
-    intersection, overlapped_circle = 0, 0
-    for _, boundary_delta in circle_boundary:
-        intersection += overlapped_circle * int(boundary_delta > 0)
-        overlapped_circle += boundary_delta
-        
-        if intersection > 10E6:
-            return -1
-    
-    return intersection
+        boundaries += [(idx-radius, +1), (idx+radius, -1)]
+
+    boundaries.sort(key=lambda x: (x[0], -x[1]))
+    intersects, overlapped_circles = 0, 0
+
+    for _, count_delta in boundaries:
+        intersects += overlapped_circles * int(count_delta > 0)
+        overlapped_circles += count_delta
+
+    # print(boundaries)
+    return -1 if intersects > 10_000_000 else intersects
