@@ -1,16 +1,13 @@
 def solution(H):
-    
-    stack = []
-    block_count = 0
-    
+
+    blocks, stack = 0, []
+
     for height in H:
-        while stack and height < stack[-1]:
+        while stack and stack[-1] > height:
             stack.pop()
-            block_count += 1
-        
-        if not stack or height > stack[-1]:
+            blocks += 1
+
+        if not stack or stack[-1] < height:
             stack.append(height)
 
-        # print(stack, block_count)
-        
-    return block_count + len(stack)
+    return blocks + len(stack)

@@ -1,23 +1,19 @@
-def solution(A):
-    
-    num_count = {}
-    for num in A:
-        num_count[num] = num_count.get(num, 0) + 1
-    
-    leader_num, leader_count = 0, 0
-    
-    for num, count in num_count.items():
-        if count > leader_count:
-            leader_num, leader_count = num, count
+from collections import defaultdict
 
-    equi_leader_count = 0
-    front_count, rear_count = 0, leader_count
-    
-    for idx in range(0, len(A)-1):
-        if A[idx] == leader_num:
-            front_count, rear_count = front_count + 1, rear_count - 1
-        
-        if front_count > (idx+1) // 2 and rear_count > (len(A)-idx-1) // 2:
-            equi_leader_count += 1
-    
-    return equi_leader_count
+def solution(A):
+
+    l_counts, r_counts = defaultdict(int), defaultdict(int)
+    for num in A:
+        r_counts[num] += 1
+
+    leader, equi_count = A[0], 0
+    for idx, num in enumerate(A):
+        l_counts[num] += 1
+        r_counts[num] -= 1
+
+        if l_counts[leader] < l_counts[num]:
+            leader = num
+        if l_counts[leader] > (idx + 1) // 2 and r_counts[leader] > (len(A) - idx - 1) // 2:
+            equi_count += 1
+
+    return equi_count
