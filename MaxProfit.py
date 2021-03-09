@@ -1,15 +1,9 @@
-import sys
-
 def solution(A):
-    
-    min_share = sys.maxsize
-    max_profit = 0
-    
-    for share in A:
-        if share < min_share:
-            min_share = share
-        
-        if share - min_share > max_profit:
-            max_profit = share - min_share
-            
+
+    min_price, max_profit = 200_001, 0
+
+    for price in A:
+        min_price = min(min_price, price)
+        max_profit = max(max_profit, price - min_price)
+
     return max_profit
